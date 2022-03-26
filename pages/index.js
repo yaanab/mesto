@@ -28,4 +28,3 @@ function formSubmitHandler(evt) {
 editButton.addEventListener('click', showPopap);
 closeButton.addEventListener('click', closePopeup);
 popupSubmitBtn.addEventListener('click', formSubmitHandler);
-
