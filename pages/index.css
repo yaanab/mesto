@@ -28,3 +28,4 @@
 @import url(../blocks/popup/__text/_type/popup__text_type_name.css);
 @import url(../blocks/popup/__text/_type/popup__text_type_about.css);
 @import url(../blocks/popup/__submit-btn/popup__submit-btn.css);
+@import url(../blocks/popup/__close-btn/popup__close-btn.css);
