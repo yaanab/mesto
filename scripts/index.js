@@ -5,13 +5,12 @@ let profileName = document.querySelector('.profile__name');
 let profileAbout = document.querySelector('.profile__about');
 let popupTextTypeName = document.querySelector('.popup__text_type_name');
 let popupTextTypeAbout = document.querySelector('.popup__text_type_about');
-let popupSubmitBtn = document.querySelector('.popup__submit-btn');
+let popupForm = document.forms.editform;
 
 function showPopap() {
   popup.classList.add('popup_opened');
   popupTextTypeName.value = profileName.textContent;
   popupTextTypeAbout.value = profileAbout.textContent;
-
 }
 
 function closePopeup() {
@@ -22,9 +21,9 @@ function formSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = popupTextTypeName.value;
   profileAbout.textContent = popupTextTypeAbout.value;
-  popup.classList.remove('popup_opened');
+  closePopeup();
 }
 
 editButton.addEventListener('click', showPopap);
 closeButton.addEventListener('click', closePopeup);
-popupSubmitBtn.addEventListener('click', formSubmitHandler);
+popupForm.addEventListener('submit', formSubmitHandler);

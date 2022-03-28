@@ -1,5 +1,6 @@
 .element__photo {
   box-sizing: border-box;
-  width: 100%;
-  object-fit: scale-down;
+  max-width: 100%;
+  max-height: auto;
+  object-fit: cover;
 }

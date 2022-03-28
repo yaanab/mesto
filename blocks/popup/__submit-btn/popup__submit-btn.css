@@ -19,7 +19,7 @@
   .popup__submit-btn {
     height: 46px;
     font-size: 14px;
-    margin-top: 45px;
+    margin-top: 25px;
   }
 }
 
@@ -27,6 +27,6 @@
   .popup__submit-btn {
     height: 50px;
     font-size: 18px;
-    margin-top: 48px;
+    margin-top: 28px;
   }
 }
