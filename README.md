@@ -11,4 +11,4 @@ https://yaanab.github.io/mesto/
 ### Планы по доработке:
 :black_square_button: Реализовать возможность добавления и удаления фотографий<br>
 ___
-![](./images/%D0%9E%D0%BD%D0%B5%D0%B6%D1%81%D0%BA%D0%BE%D0%B5%D0%9E%D0%B7%D0%B5%D1%80%D0%BE.jpg)
+![](./images/krasnoyarskiy-krai.jpg)
