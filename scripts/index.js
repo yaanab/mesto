@@ -8,6 +8,7 @@ const popupTextTypeName = document.querySelector('.popup__text_type_name');
 const popupTextTypeAbout = document.querySelector('.popup__text_type_about');
 const popupForm = document.forms.editform;
 const popupItem = document.querySelector('.popup_item');
+const addButton = document.querySelector('.profile__add-btn');
 
 function showPopupProfile() {
   popupProfile.classList.add('popup_opened');
@@ -26,6 +27,12 @@ function formSubmitHandler(evt) {
   closePopeup();
 }
 
+function showPopupItem() {
+  popupItem.classList.add('popup_opened');
+}
+
 editButton.addEventListener('click', showPopupProfile);
 closeButton.addEventListener('click', closePopeup);
 popupForm.addEventListener('submit', formSubmitHandler);
+addButton.addEventListener('click', showPopupItem);
+
