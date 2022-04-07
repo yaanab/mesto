@@ -18,7 +18,7 @@
     width: 20px;
     height: 20px;
     top: -37px;
-    left: 261px;
+    right: 0;
   }
 }
 
@@ -27,6 +27,6 @@
     width: 32px;
     height: 32px;
     top: -42px;
-    left: 438px;
+    right: -42px;
   }
 }
