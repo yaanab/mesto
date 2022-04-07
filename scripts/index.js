@@ -10,6 +10,8 @@ const popupForm = document.forms.editform;
 const popupItem = document.querySelector('.popup_item');
 const addButton = document.querySelector('.profile__add-btn');
 
+const elementList = {}
+
 function showPopupProfile() {
   popupProfile.classList.add('popup_opened');
   popupTextTypeName.value = profileName.textContent;
