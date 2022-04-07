@@ -1,14 +1,16 @@
-let popup = document.querySelector('.popup');
-let editButton = document.querySelector('.profile__edit-btn');
-let closeButton = document.querySelector('.popup__close-btn');
-let profileName = document.querySelector('.profile__name');
-let profileAbout = document.querySelector('.profile__about');
-let popupTextTypeName = document.querySelector('.popup__text_type_name');
-let popupTextTypeAbout = document.querySelector('.popup__text_type_about');
-let popupForm = document.forms.editform;
+const popup = document.querySelector('.popup');
+const popupProfile = document.querySelector('.popup_profile');
+const editButton = document.querySelector('.profile__edit-btn');
+const closeButton = document.querySelector('.popup__close-btn');
+const profileName = document.querySelector('.profile__name');
+const profileAbout = document.querySelector('.profile__about');
+const popupTextTypeName = document.querySelector('.popup__text_type_name');
+const popupTextTypeAbout = document.querySelector('.popup__text_type_about');
+const popupForm = document.forms.editform;
+const popupItem = document.querySelector('.popup_item');
 
-function showPopap() {
-  popup.classList.add('popup_opened');
+function showPopupProfile() {
+  popupProfile.classList.add('popup_opened');
   popupTextTypeName.value = profileName.textContent;
   popupTextTypeAbout.value = profileAbout.textContent;
 }
@@ -24,6 +26,6 @@ function formSubmitHandler(evt) {
   closePopeup();
 }
 
-editButton.addEventListener('click', showPopap);
+editButton.addEventListener('click', showPopupProfile);
 closeButton.addEventListener('click', closePopeup);
 popupForm.addEventListener('submit', formSubmitHandler);
