@@ -10,6 +10,7 @@ const profileAbout = document.querySelector('.profile__about');
 const popupItemForm = document.forms.itemForm;
 const addButton = document.querySelector('.profile__add-btn');
 const closeButtonItem = document.querySelector('.popup__close-btn_item');
+const closeButtonPopupImage = document.querySelector('.popup-img__close-btn');
 
 const initialCards = [
   {
@@ -46,6 +47,7 @@ initialCards.forEach((element) => {
 
   likeElementHandler(initialCard);
   removeElement(initialCard);
+  showPopupImage(initialCard);
 
   elementsList.append(initialCard);
 });
@@ -64,6 +66,15 @@ function removeElement(element) {
   });
 }
 
+function showPopupImage(element) {
+  const elementPhoto = element.querySelector('.element__photo');
+  const popupImage = document.querySelector('.popup-img__photo');
+  const popupTitle = document.querySelector('.popup-img__title');
+  elementPhoto.addEventListener('click', openClosePopupImage);
+  popupTitle.textContent = element.querySelector('.element__title').textContent;
+  popupImage.src = elementPhoto.src;
+}
+
 function newElement(elementTitle, elementImage) {
   const newElement = elementTemplate.cloneNode(true);
 
@@ -72,6 +83,7 @@ function newElement(elementTitle, elementImage) {
 
   likeElementHandler(newElement);
   removeElement(newElement);
+  showPopupImage(newElement);
 
   elementsList.prepend(newElement);
 }
@@ -109,9 +121,15 @@ function openClosePopupItem() {
   popupItem.classList.toggle('popup_opened');
 }
 
+function openClosePopupImage() {
+  const popupImage = document.querySelector('.popup-img');
+  popupImage.classList.toggle('popup-img_opened');
+}
+
 editButton.addEventListener('click', showPopupProfile);
 popupEditForm.addEventListener('submit', formSubmitHandler);
 closeButtonProfile.addEventListener('click', openClosePopupProfile);
 addButton.addEventListener('click', openClosePopupItem);
 popupItemForm.addEventListener('submit', addElementHandler);
 closeButtonItem.addEventListener('click', openClosePopupItem);
+closeButtonPopupImage.addEventListener('click', openClosePopupImage);
