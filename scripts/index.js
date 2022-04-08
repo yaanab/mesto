@@ -50,14 +50,26 @@ initialCards.forEach((element) => {
   initialCard.querySelector('.element__title').textContent = element.name;
   initialCard.querySelector('.element__photo').src = element.link;
 
+  likeElement(initialCard);
+
   elementsList.append(initialCard);
 });
 
 function newElement(elementTitle, elementImage) {
   const newElement = elementTemplate.cloneNode(true);
+
   newElement.querySelector('.element__title').textContent = elementTitle;
   newElement.querySelector('.element__photo').src = elementImage;
+
+  likeElement(newElement);
+
   elementsList.prepend(newElement);
+}
+
+function likeElement(element) {
+  element.querySelector('.element__like').addEventListener('click', function(evt) {
+    evt.target.classList.toggle('element__like_active');
+  });
 }
 
 function addElement(evt) {
