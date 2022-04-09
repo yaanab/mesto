@@ -9,6 +9,6 @@ https://yaanab.github.io/mesto/index.html
 :white_check_mark: Элементы JavaScript. Работа с DOM<br>
 
 ### Планы по доработке:
-:black_square_button: Реализовать возможность добавления и удаления фотографий<br>
+:black_square_button: Реализовать возможность изменения аватара<br>
 ___
 ![](./images/krasnoyarskiy-krai.jpg)
