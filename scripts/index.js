@@ -44,6 +44,7 @@ initialCards.forEach((element) => {
 
   initialCard.querySelector('.element__title').textContent = element.name;
   initialCard.querySelector('.element__photo').src = element.link;
+  initialCard.querySelector('.element__photo').alt = element.name;
 
   likeElementHandler(initialCard);
   removeElement(initialCard);
@@ -68,11 +69,13 @@ function removeElement(element) {
 
 function showPopupImage(element) {
   const elementPhoto = element.querySelector('.element__photo');
-  const popupImage = document.querySelector('.popup-img__photo');
-  const popupTitle = document.querySelector('.popup-img__title');
-  elementPhoto.addEventListener('click', openClosePopupImage);
-  popupTitle.textContent = element.querySelector('.element__title').textContent;
-  popupImage.src = elementPhoto.src;
+  const elementTitle = element.querySelector('.element__title');
+  elementPhoto.addEventListener('click', function () {
+    openClosePopupImage();
+    document.querySelector('.popup-img__photo').src = elementPhoto.src;
+    document.querySelector('.popup-img__photo').alt = elementPhoto.alt;
+    document.querySelector('.popup-img__title').textContent = elementTitle.textContent;
+  });
 }
 
 function newElement(elementTitle, elementImage) {
@@ -80,12 +83,23 @@ function newElement(elementTitle, elementImage) {
 
   newElement.querySelector('.element__title').textContent = elementTitle;
   newElement.querySelector('.element__photo').src = elementImage;
+  newElement.querySelector('.element__photo').alt = elementTitle;
 
   likeElementHandler(newElement);
   removeElement(newElement);
   showPopupImage(newElement);
 
   elementsList.prepend(newElement);
+}
+
+function addElementHandler(evt) {
+  evt.preventDefault();
+  const placeName = document.querySelector('.popup__text_place_name');
+  const placeUrl = document.querySelector('.popup__text_place_url');
+  newElement(placeName.value, placeUrl.value);
+  placeName.value = '';
+  placeUrl.value = '';
+  openClosePopupItem();
 }
 
 function showPopupProfile() {
@@ -104,16 +118,6 @@ function formSubmitHandler(evt) {
   profileName.textContent = popupTextTypeName.value;
   profileAbout.textContent = popupTextTypeAbout.value;
   openClosePopupProfile();
-}
-
-function addElementHandler(evt) {
-  evt.preventDefault();
-  const placeName = document.querySelector('.popup__text_place_name');
-  const placeUrl = document.querySelector('.popup__text_place_url');
-  newElement(placeName.value, placeUrl.value);
-  placeName.value = '';
-  placeUrl.value = '';
-  openClosePopupItem();
 }
 
 function openClosePopupItem() {
