@@ -55,9 +55,7 @@ function createCard(cardTitle, cardImage) {
 
   cardNew.querySelector('.element__like').addEventListener('click', likeElementHandler);
   cardNew.querySelector('.element__remove').addEventListener('click', removeElement);
-  cardNew.querySelector('.element__photo').addEventListener('click', function () {
-    showPopupImage(this);
-  });
+  cardNew.querySelector('.element__photo').addEventListener('click', () => showPopupImage(cardTitle, cardImage));
 
   return cardNew;
 }
@@ -70,10 +68,10 @@ function removeElement(evt) {
   evt.target.closest('.element').remove();
 }
 
-function showPopupImage(element) {
-  popupImgPhoto.src = element.src;
-  popupImgPhoto.alt = element.alt;
-  popupImgTitle.textContent = element.alt;
+function showPopupImage(title, image) {
+  popupImgPhoto.src = image;
+  popupImgPhoto.alt = title;
+  popupImgTitle.textContent = title;
   openPopup(popupImg);
 }
 
@@ -117,15 +115,8 @@ function formSubmitHandler(evt) {
 buttonEdit.addEventListener('click', showPopupProfile);
 popupEditForm.addEventListener('submit', formSubmitHandler);
 popupItemForm.addEventListener('submit', addElementHandler);
-buttonAddCard.addEventListener('click', function () {
-  openPopup(popupItem);
-});
-buttonClosePopupItem.addEventListener('click', function () {
-  closePopup(popupItem);
-});
-buttonClosePopupProfile.addEventListener('click', function () {
-  closePopup(popupProfile);
-});
-buttonClosePopupImage.addEventListener('click', function () {
-  closePopup(popupImg);
-});
+buttonAddCard.addEventListener('click', () => openPopup(popupItem));
+buttonClosePopupItem.addEventListener('click', () => closePopup(popupItem));
+buttonClosePopupProfile.addEventListener('click', () => closePopup(popupProfile));
+buttonClosePopupImage.addEventListener('click', () => closePopup(popupImg));
+
