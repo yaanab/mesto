@@ -93,10 +93,17 @@ function addElementHandler(evt) {
 
 function openPopup(popupType) {
   popupType.classList.add('popup_opened');
+  document.addEventListener('keydown', function(evt) {
+    if (evt.key === 'Escape') {
+      closePopup(popupType);
+      console.log('можно закрыть');
+    }
+  });
 }
 
 function closePopup(popupType) {
   popupType.classList.remove('popup_opened');
+
 }
 
 function showPopupProfile() {
@@ -119,4 +126,6 @@ buttonAddCard.addEventListener('click', () => openPopup(popupItem));
 buttonClosePopupItem.addEventListener('click', () => closePopup(popupItem));
 buttonClosePopupProfile.addEventListener('click', () => closePopup(popupProfile));
 buttonClosePopupImage.addEventListener('click', () => closePopup(popupImg));
+
+
 
