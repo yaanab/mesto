@@ -93,13 +93,18 @@ function addElementHandler(evt) {
 
 function openPopup(popupType) {
   popupType.classList.add('popup_opened');
-  document.addEventListener('keydown', function(evt) {
+  document.addEventListener('keydown', (evt) => {
     if (evt.key === 'Escape') {
       closePopup(popupType);
-      console.log('можно закрыть');
     }
   });
+  popupType.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup')) {
+      closePopup(popupType);
+    }
+  })
 }
+
 
 function closePopup(popupType) {
   popupType.classList.remove('popup_opened');
