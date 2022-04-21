@@ -53,12 +53,18 @@ function createCard(cardTitle, cardImage) {
   cardNew.querySelector('.element__photo').src = cardImage;
   cardNew.querySelector('.element__photo').alt = cardTitle;
 
-  cardNew.querySelector('.element__like').addEventListener('click', likeElementHandler);
-  cardNew.querySelector('.element__remove').addEventListener('click', removeElement);
-  cardNew.querySelector('.element__photo').addEventListener('click', () => showPopupImage(cardTitle, cardImage));
-
   return cardNew;
 }
+
+cardsContainer.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('element__like')) {
+    likeElementHandler(evt);
+  } else if (evt.target.classList.contains('element__remove')) {
+    removeElement(evt);
+  } else if (evt.target.classList.contains('element__photo')) {
+    showPopupImage(evt.target.alt, evt.target.src);
+  }
+});
 
 function likeElementHandler(evt) {
   evt.target.classList.toggle('element__like_active');
