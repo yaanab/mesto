@@ -111,7 +111,6 @@ function openPopup(popupType) {
   })
 }
 
-
 function closePopup(popupType) {
   popupType.classList.remove('popup_opened');
 
@@ -137,6 +136,3 @@ buttonAddCard.addEventListener('click', () => openPopup(popupItem));
 buttonClosePopupItem.addEventListener('click', () => closePopup(popupItem));
 buttonClosePopupProfile.addEventListener('click', () => closePopup(popupProfile));
 buttonClosePopupImage.addEventListener('click', () => closePopup(popupImg));
-
-
-
