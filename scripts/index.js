@@ -48,10 +48,11 @@ const initialCards = [
 
 function createCard(cardTitle, cardImage) {
   const cardNew = elementTemplate.cloneNode(true);
+  const photoElement = cardNew.querySelector('.element__photo');
 
   cardNew.querySelector('.element__title').textContent = cardTitle;
-  cardNew.querySelector('.element__photo').src = cardImage;
-  cardNew.querySelector('.element__photo').alt = cardTitle;
+  photoElement.src = cardImage;
+  photoElement.alt = cardTitle;
 
   return cardNew;
 }
