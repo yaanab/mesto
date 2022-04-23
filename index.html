@@ -52,9 +52,13 @@
     <div class="popup popup_profile">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="editForm" class="popup__form">
-          <input type="text" name="name" placeholder="Имя" class="popup__text popup__text_type_name" minlength="2" maxlength="40">
-          <input type="text" name="job" placeholder="О себе" class="popup__text popup__text_type_about" minlength="2" maxlength="200">
+        <form name="editForm" class="popup__form" novalidate>
+          <input id="name-input" type="text" name="name" placeholder="Имя" class="popup__text popup__text_type_name"
+            minlength="2" maxlength="40" required>
+          <span class="name-input-error popup__text-error"></span>
+          <input id="job-input" type="text" name="job" placeholder="О себе" class="popup__text popup__text_type_about"
+            minlength="2" maxlength="200" required>
+          <span class="job-input-error popup__text-error"></span>
           <button type="submit" class="popup__submit-btn">Сохранить</button>
         </form>
         <button aria-label="Закрыть" type="button" class="popup__close-btn popup__close-btn_profile"></button>
@@ -64,10 +68,14 @@
     <div class="popup popup_item">
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
-        <form name="itemForm" class="popup__form">
-          <input type="text" name="place-name" placeholder="Название" class="popup__text popup__text_place_name"  minlength="2" maxlength="30">
-          <input type="url" name="image-src" placeholder="Ccылка на картинку" class="popup__text popup__text_place_url">
-          <button type="submit" class="popup__submit-btn">Создать</button>
+        <form name="itemForm" class="popup__form" novalidate>
+          <input id="place-name-input" type="text" name="place" placeholder="Название"
+            class="popup__text popup__text_place_name" minlength="2" maxlength="30" required>
+          <span class="place-name-input-error popup__text-error"></span>
+          <input id="image-src-input" type="url" name="image" placeholder="Ccылка на картинку"
+            class="popup__text popup__text_place_url" required>
+          <span class="image-src-input-error popup__text-error"></span>
+          <button type="submit" class="popup__submit-btn popup__submit-btn_item">Создать</button>
         </form>
         <button aria-label="Закрыть" type="button" class="popup__close-btn popup__close-btn_item"></button>
       </div>
@@ -84,6 +92,7 @@
     </div>
 
   </div>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 
