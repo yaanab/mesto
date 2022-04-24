@@ -14,36 +14,38 @@ const popupTextTypeAbout = popupEditForm.elements.job;
 const popupItemForm = document.forms.itemForm;
 const placeName = popupItemForm.elements.place;
 const placeUrl = popupItemForm.elements.image;
+const buttonSubmit = document.querySelector('.popup__submit-btn_item');
 const elementTemplate = document.querySelector('.element-template').content;
 const cardsContainer = document.querySelector('.elements');
 const popupImgPhoto = document.querySelector('.popup-img__photo');
 const popupImgTitle = document.querySelector('.popup-img__title');
+const ESC_CODE = 'Escape';
 
 const initialCards = [
   {
     name: 'Кинерма',
-    link: 'https://images.unsplash.com/photo-1559029881-7cfd01ac1f18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80'
+    link: 'https://images.unsplash.com/photo-1559029881-7cfd01ac1f18?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80',
   },
   {
     name: 'Красноярск',
-    link: 'https://images.unsplash.com/photo-1597125760773-b0166e249ea7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80'
+    link: 'https://images.unsplash.com/photo-1597125760773-b0166e249ea7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80',
   },
   {
     name: 'Москва Сити',
-    link: 'https://images.unsplash.com/photo-1579193079451-ce63e71db675?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80'
+    link: 'https://images.unsplash.com/photo-1579193079451-ce63e71db675?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',
   },
   {
     name: 'Москва',
-    link: 'https://images.unsplash.com/photo-1519906448142-1176f5530f5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=389&q=80'
+    link: 'https://images.unsplash.com/photo-1519906448142-1176f5530f5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=389&q=80',
   },
   {
     name: 'Онежское озеро',
-    link: 'https://images.unsplash.com/photo-1543699936-c901ddbf0c05?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=386&q=80'
+    link: 'https://images.unsplash.com/photo-1543699936-c901ddbf0c05?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=386&q=80',
   },
   {
     name: 'Санкт-Петербург',
-    link: 'https://images.unsplash.com/photo-1570720742937-423ec1d7a3e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=326&q=80'
-  }
+    link: 'https://images.unsplash.com/photo-1570720742937-423ec1d7a3e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=326&q=80',
+  },
 ];
 
 function createCard(cardTitle, cardImage) {
@@ -95,25 +97,34 @@ function addElementHandler(evt) {
   renderCard(createCard(placeName.value, placeUrl.value));
   closePopup(popupItem);
   popupItemForm.reset();
+  buttonSubmit.classList.add('popup__submit-btn_disabled');
+  buttonSubmit.setAttribute('disabled', '');
 }
 
 function openPopup(popupType) {
   popupType.classList.add('popup_opened');
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      closePopup(popupType);
-    }
-  });
-  popupType.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup')) {
-      closePopup(popupType);
-    }
-  })
+  document.addEventListener('keydown', closeByEsc);
+  popupType.addEventListener('click', closeByOverlay);
 }
 
 function closePopup(popupType) {
   popupType.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEsc);
+  popupType.removeEventListener('click', closeByOverlay);
+}
 
+function closeByEsc(evt) {
+  if (evt.key = ESC_CODE) {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
+function closeByOverlay(evt) {
+  if (evt.target.classList.contains('popup')) {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
 }
 
 function showPopupProfile() {
