@@ -1,3 +1,4 @@
+import {initialCards} from './cards.js';
 const buttonEdit = document.querySelector('.profile__edit-btn');
 const buttonAddCard = document.querySelector('.profile__add-btn');
 const buttonClosePopupProfile = document.querySelector('.popup__close-btn_profile');
@@ -61,7 +62,6 @@ function renderCard(card) {
   cardsContainer.prepend(card);
 }
 
-import {initialCards} from './cards.js';
 initialCards.forEach(function (element) {
   renderCard(createCard(element.name, element.link));
 });
@@ -78,13 +78,13 @@ function addElementHandler(evt) {
 function openPopup(popupType) {
   popupType.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc);
-  popupType.addEventListener('click', closeByOverlay);
+  popupType.addEventListener('mousedown', closeByOverlay);
 }
 
 function closePopup(popupType) {
   popupType.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEsc);
-  popupType.removeEventListener('click', closeByOverlay);
+  popupType.removeEventListener('mousedown', closeByOverlay);
 }
 
 function closeByEsc(evt) {
