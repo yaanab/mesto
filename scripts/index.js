@@ -1,6 +1,7 @@
 const buttonEdit = document.querySelector('.profile__edit-btn');
 const buttonAddCard = document.querySelector('.profile__add-btn');
-const buttonClosePopupProfile = document.querySelector('.popup__close-btn_profile');
+const buttonClosePopupProfile = document.querySelector('.popup__close-btn_profile'
+);
 const buttonClosePopupItem = document.querySelector('.popup__close-btn_item');
 const buttonClosePopupImage = document.querySelector('.popup-img__close-btn');
 const popupProfile = document.querySelector('.popup_profile');
@@ -114,7 +115,7 @@ function closePopup(popupType) {
 }
 
 function closeByEsc(evt) {
-  if (evt.key = ESC_CODE) {
+  if (evt.key === ESC_CODE) {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
