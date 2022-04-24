@@ -1,7 +1,6 @@
 const buttonEdit = document.querySelector('.profile__edit-btn');
 const buttonAddCard = document.querySelector('.profile__add-btn');
-const buttonClosePopupProfile = document.querySelector('.popup__close-btn_profile'
-);
+const buttonClosePopupProfile = document.querySelector('.popup__close-btn_profile');
 const buttonClosePopupItem = document.querySelector('.popup__close-btn_item');
 const buttonClosePopupImage = document.querySelector('.popup-img__close-btn');
 const popupProfile = document.querySelector('.popup_profile');
@@ -134,7 +133,7 @@ function showPopupProfile() {
   openPopup(popupProfile);
 }
 
-function formSubmitHandler(evt) {
+function submitProfileForm(evt) {
   evt.preventDefault();
   nameProfile.textContent = popupTextTypeName.value;
   jopProfile.textContent = popupTextTypeAbout.value;
@@ -142,7 +141,7 @@ function formSubmitHandler(evt) {
 }
 
 buttonEdit.addEventListener('click', showPopupProfile);
-popupEditForm.addEventListener('submit', formSubmitHandler);
+popupEditForm.addEventListener('submit', submitProfileForm);
 popupItemForm.addEventListener('submit', addElementHandler);
 buttonAddCard.addEventListener('click', () => openPopup(popupItem));
 buttonClosePopupItem.addEventListener('click', () => closePopup(popupItem));
