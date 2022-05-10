@@ -1,4 +1,6 @@
-import { initialCards } from './cards.js';
+import { Card } from './card.js';
+import { initialCards } from './elements.js';
+
 const buttonEdit = document.querySelector('.profile__edit-btn');
 const buttonAddCard = document.querySelector('.profile__add-btn');
 const buttonClosePopupProfile = document.querySelector('.popup__close-btn_profile');
@@ -16,62 +18,9 @@ const popupItemForm = document.forms.itemForm;
 const placeName = popupItemForm.elements.place;
 const placeUrl = popupItemForm.elements.image;
 const buttonSubmit = document.querySelector('.popup__submit-btn_item');
-const elementTemplate = document.querySelector('.element-template').content;
 const cardsContainer = document.querySelector('.elements');
-const popupImgPhoto = document.querySelector('.popup-img__photo');
-const popupImgTitle = document.querySelector('.popup-img__title');
+
 const ESC_CODE = 'Escape';
-class Card {
-  constructor(name, link) {
-    this._title = name;
-    this._image = link;
-  }
-
-  _getTemplate() {
-    const cardNew = elementTemplate.cloneNode(true);
-    return cardNew;
-  }
-
-  createCard() {
-    this._element = this._getTemplate();
-    const photoElement = this._element.querySelector('.element__photo');
-
-    this._element.querySelector('.element__title').textContent = this._title;
-    photoElement.src = this._image;
-    photoElement.alt = this._title;
-
-    this._setEventListeners();
-
-    return this._element;
-  }
-
-  _setEventListeners() {
-    this._element.querySelector('.element').addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('element__like')) {
-        this._likeElementHandler(evt);
-      } else if (evt.target.classList.contains('element__remove')) {
-        this._removeElement(evt);
-      } else if (evt.target.classList.contains('element__photo')) {
-        this._showPopupImage();
-      }
-    });
-  }
-
-  _removeElement(evt) {
-    evt.target.closest('.element').remove();
-  }
-
-  _showPopupImage() {
-    popupImgPhoto.src = this._image;
-    popupImgPhoto.alt = this._title;
-    popupImgTitle.textContent = this._title;
-    openPopup(popupImg);
-  }
-
-  _likeElementHandler(evt) {
-    evt.target.classList.toggle('element__like_active');
-  }
-}
 
 function renderCard(card) {
   cardsContainer.prepend(card);
@@ -94,7 +43,7 @@ function addElementHandler(evt) {
   buttonSubmit.setAttribute('disabled', '');
 }
 
-function openPopup(popupType) {
+export function openPopup(popupType) {
   popupType.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc);
   popupType.addEventListener('mousedown', closeByOverlay);
