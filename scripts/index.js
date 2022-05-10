@@ -1,5 +1,6 @@
-import { Card } from './card.js';
+import { Card } from './Сard.js';
 import { initialCards } from './elements.js';
+import { FormValidator } from './FormValidator.js';
 
 const buttonEdit = document.querySelector('.profile__edit-btn');
 const buttonAddCard = document.querySelector('.profile__add-btn');
@@ -19,8 +20,20 @@ const placeName = popupItemForm.elements.place;
 const placeUrl = popupItemForm.elements.image;
 const buttonSubmit = document.querySelector('.popup__submit-btn_item');
 const cardsContainer = document.querySelector('.elements');
-
 const ESC_CODE = 'Escape';
+const objectConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__text',
+    submitButtonSelector: '.popup__submit-btn',
+    inactiveButtonClass: 'popup__submit-btn_disabled',
+    inputErrorClass: 'popup__text_type_error',
+    errorClass: 'popup__text-error_active'
+  }
+
+const popupProfileValidation = new FormValidator(objectConfig, popupProfile);
+popupProfileValidation.enableValidation();
+const popupItemValidation = new FormValidator(objectConfig, popupItem);
+popupItemValidation.enableValidation();
 
 function renderCard(card) {
   cardsContainer.prepend(card);
