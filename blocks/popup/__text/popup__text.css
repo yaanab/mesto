@@ -10,6 +10,10 @@
   line-height: 17px;
 }
 
+.popup__text:invalid:placeholder-shown {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
 .popup__text:focus {
   border: 2px solid #A1BEF4;
   border-radius: 3px;
