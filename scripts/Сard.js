@@ -1,4 +1,4 @@
-import { openPopup, popupImg } from "./index.js";
+import { openPopup, popupImg, popupImgPhoto, popupImgTitle } from "./index.js";
 
 export class Card {
   constructor(name, link) {
@@ -42,8 +42,6 @@ export class Card {
   }
 
   _showPopupImage() {
-    const popupImgPhoto = document.querySelector('.popup-img__photo');
-    const popupImgTitle = document.querySelector('.popup-img__title');
     popupImgPhoto.src = this._image;
     popupImgPhoto.alt = this._title;
     popupImgTitle.textContent = this._title;
