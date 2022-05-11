@@ -18,7 +18,6 @@ const popupTextTypeAbout = popupEditForm.elements.job;
 const popupItemForm = document.forms.itemForm;
 const placeName = popupItemForm.elements.place;
 const placeUrl = popupItemForm.elements.image;
-const buttonSubmit = document.querySelector('.popup__submit-btn_item');
 const cardsContainer = document.querySelector('.elements');
 const ESC_CODE = 'Escape';
 const objectConfig = {
@@ -53,11 +52,16 @@ function addElementHandler(evt) {
   evt.preventDefault();
   renderCard(createCard(placeName.value, placeUrl.value));
   closePopup(popupItem);
-  popupItemForm.reset();
-  popupItemValidation.inactiveButtonState()
+  popupItemValidation.inactiveButtonState();
 }
 
 export function openPopup(popupType) {
+  if (popupType === popupItem) {
+    popupItemValidation.resetErrors();
+    popupItemForm.reset();
+  } else if (popupType === popupProfile) {
+    popupProfileValidation.resetErrors();
+  }
   popupType.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc);
   popupType.addEventListener('mousedown', closeByOverlay);

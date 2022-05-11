@@ -23,18 +23,18 @@ export class FormValidator {
 
   _toggleButtonState(inputList) {
     if (this._hasInvalidInput(inputList)) {
-      this.activeButtonState();
-    } else {
       this.inactiveButtonState();
+    } else {
+      this.activeButtonState();
     }
   };
 
-  activeButtonState() {
+  inactiveButtonState() {
     this._buttonElement.classList.add(this._config.inactiveButtonClass);
     this._buttonElement.setAttribute('disabled', '');
   }
 
-  inactiveButtonState() {
+  activeButtonState() {
     this._buttonElement.classList.remove(this._config.inactiveButtonClass);
     this._buttonElement.removeAttribute('disabled', '');
   }
@@ -66,5 +66,12 @@ export class FormValidator {
     errorElement.classList.remove(this._config.errorClass);
     errorElement.textContent = '';
   };
+
+  resetErrors() {
+    const inputList = Array.from(this._element.querySelectorAll(this._config.inputSelector));
+    inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
 };
 
