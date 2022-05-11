@@ -39,17 +39,19 @@ function renderCard(card) {
   cardsContainer.prepend(card);
 }
 
-initialCards.forEach((element) => {
-  const card = new Card(element.name, element.link);
+function createCard(cardTitle, cardImage) {
+  const card = new Card(cardTitle, cardImage);
   const cardElement = card.createCard();
-  renderCard(cardElement);
+  return cardElement;
+}
+
+initialCards.forEach((element) => {
+  renderCard(createCard(element.name, element.link));
 });
 
 function addElementHandler(evt) {
   evt.preventDefault();
-  const card = new Card(placeName.value, placeUrl.value);
-  const cardElement = card.createCard();
-  renderCard(cardElement);
+  renderCard(createCard(placeName.value, placeUrl.value));
   closePopup(popupItem);
   popupItemForm.reset();
   buttonSubmit.classList.add('popup__submit-btn_disabled');
