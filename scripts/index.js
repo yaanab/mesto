@@ -54,8 +54,7 @@ function addElementHandler(evt) {
   renderCard(createCard(placeName.value, placeUrl.value));
   closePopup(popupItem);
   popupItemForm.reset();
-  buttonSubmit.classList.add('popup__submit-btn_disabled');
-  buttonSubmit.setAttribute('disabled', '');
+  popupItemValidation.inactiveButtonState()
 }
 
 export function openPopup(popupType) {
