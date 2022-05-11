@@ -6,9 +6,6 @@ export class FormValidator {
 
   enableValidation() {
     const form = this._element.querySelector(this._config.formSelector);
-    form.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
     this._setEventListeners();
   }
 
