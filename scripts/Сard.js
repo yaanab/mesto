@@ -26,14 +26,14 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._element.querySelector('.element').addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('element__like')) {
-        this._likeElementHandler(evt);
-      } else if (evt.target.classList.contains('element__remove')) {
-        this._removeElement(evt);
-      } else if (evt.target.classList.contains('element__photo')) {
-        this._showPopupImage();
-      }
+    this._element.querySelector('.element__like').addEventListener('click', (evt) => {
+      this._likeElementHandler(evt);
+    });
+    this._element.querySelector('.element__remove').addEventListener('click', (evt) => {
+      this._removeElement(evt);
+    });
+    this._element.querySelector('.element__photo').addEventListener('click', () => {
+      this._showPopupImage();
     });
   }
 
