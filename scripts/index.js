@@ -58,12 +58,6 @@ function addElementHandler(evt) {
 }
 
 export function openPopup(popupType) {
-  if (popupType === popupItem) {
-    popupItemValidation.resetErrors();
-    popupItemForm.reset();
-  } else if (popupType === popupProfile) {
-    popupProfileValidation.resetErrors();
-  }
   popupType.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc);
   popupType.addEventListener('mousedown', closeByOverlay);
@@ -90,6 +84,7 @@ function closeByOverlay(evt) {
 }
 
 function showPopupProfile() {
+  popupProfileValidation.resetErrors();
   popupTextTypeName.value = nameProfile.textContent;
   popupTextTypeAbout.value = jopProfile.textContent;
   openPopup(popupProfile);
@@ -102,10 +97,16 @@ function submitProfileForm(evt) {
   closePopup(popupProfile);
 }
 
+function showPopupItem() {
+  popupItemValidation.resetErrors();
+  popupItemForm.reset();
+  openPopup(popupItem);
+}
+
 buttonEdit.addEventListener('click', showPopupProfile);
 popupEditForm.addEventListener('submit', submitProfileForm);
 popupItemForm.addEventListener('submit', addElementHandler);
-buttonAddCard.addEventListener('click', () => openPopup(popupItem));
+buttonAddCard.addEventListener('click', showPopupItem);
 buttonClosePopupItem.addEventListener('click', () => closePopup(popupItem));
 buttonClosePopupProfile.addEventListener('click', () => closePopup(popupProfile));
 buttonClosePopupImage.addEventListener('click', () => closePopup(popupImg));
