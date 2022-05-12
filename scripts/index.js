@@ -41,7 +41,7 @@ function renderCard(card) {
 }
 
 function createCard(cardTitle, cardImage) {
-  const card = new Card(cardTitle, cardImage);
+  const card = new Card(cardTitle, cardImage, '.element-template');
   const cardElement = card.createCard();
   return cardElement;
 }
