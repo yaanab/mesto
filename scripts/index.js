@@ -21,6 +21,7 @@ const popupItemForm = document.forms.itemForm;
 const placeName = popupItemForm.elements.place;
 const placeUrl = popupItemForm.elements.image;
 const cardsContainer = document.querySelector('.elements');
+const elementTemplate = document.querySelector('.element-template').content;
 const ESC_CODE = 'Escape';
 const objectConfig = {
     formSelector: '.popup__form',
@@ -41,7 +42,7 @@ function renderCard(card) {
 }
 
 function createCard(cardTitle, cardImage) {
-  const card = new Card(cardTitle, cardImage, '.element-template');
+  const card = new Card(cardTitle, cardImage, elementTemplate);
   const cardElement = card.createCard();
   return cardElement;
 }
