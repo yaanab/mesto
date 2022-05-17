@@ -1,7 +1,7 @@
 import { Card } from './Сard.js';
 import { initialCards } from './elements.js';
 import { FormValidator } from './FormValidator.js';
-import { openPopup, popupImg } from "./utils.js";
+import { openPopup, closePopup, popupImg } from './utils.js';
 
 const buttonEdit = document.querySelector('.profile__edit-btn');
 const buttonAddCard = document.querySelector('.profile__add-btn');
@@ -20,7 +20,6 @@ const placeName = popupItemForm.elements.place;
 const placeUrl = popupItemForm.elements.image;
 const cardsContainer = document.querySelector('.elements');
 const elementTemplate = document.querySelector('.element-template').content;
-const ESC_CODE = 'Escape';
 const objectConfig = {
     formSelector: '.popup__form',
     inputSelector: '.popup__text',
@@ -54,26 +53,6 @@ function addElementHandler(evt) {
   renderCard(createCard(placeName.value, placeUrl.value));
   closePopup(popupItem);
   popupItemValidation.inactiveButtonState();
-}
-
-function closePopup(popupType) {
-  popupType.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByEsc);
-  popupType.removeEventListener('mousedown', closeByOverlay);
-}
-
-function closeByEsc(evt) {
-  if (evt.key === ESC_CODE) {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
-  }
-}
-
-function closeByOverlay(evt) {
-  if (evt.target.classList.contains('popup')) {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
-  }
 }
 
 function showPopupProfile() {

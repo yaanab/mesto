@@ -1,6 +1,5 @@
 const popupImg = document.querySelector('.popup-img');
-const popupImgPhoto = document.querySelector('.popup-img__photo');
-const popupImgTitle = document.querySelector('.popup-img__title');
+const ESC_CODE = 'Escape';
 
 function openPopup(popupType) {
   popupType.classList.add('popup_opened');
@@ -8,4 +7,23 @@ function openPopup(popupType) {
   popupType.addEventListener('mousedown', closeByOverlay);
 }
 
-export { openPopup, popupImg, popupImgPhoto, popupImgTitle };
+function closePopup(popupType) {
+  popupType.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEsc);
+  popupType.removeEventListener('mousedown', closeByOverlay);
+}
+
+function closeByEsc(evt) {
+  if (evt.key === ESC_CODE) {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
+function closeByOverlay(evt) {
+  if (evt.target.classList.contains('popup')) {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+export { openPopup, closePopup, popupImg };
