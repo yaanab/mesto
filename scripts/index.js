@@ -1,6 +1,7 @@
 import { Card } from './Сard.js';
 import { initialCards } from './elements.js';
 import { FormValidator } from './FormValidator.js';
+import { openPopup, popupImg } from "./utils.js";
 
 const buttonEdit = document.querySelector('.profile__edit-btn');
 const buttonAddCard = document.querySelector('.profile__add-btn');
@@ -9,9 +10,6 @@ const buttonClosePopupItem = document.querySelector('.popup__close-btn_item');
 const buttonClosePopupImage = document.querySelector('.popup-img__close-btn');
 const popupProfile = document.querySelector('.popup_profile');
 const popupItem = document.querySelector('.popup_item');
-export const popupImg = document.querySelector('.popup-img');
-export const popupImgPhoto = document.querySelector('.popup-img__photo');
-export const popupImgTitle = document.querySelector('.popup-img__title');
 const nameProfile = document.querySelector('.profile__name');
 const jopProfile = document.querySelector('.profile__about');
 const popupEditForm = document.forms.editForm;
@@ -56,12 +54,6 @@ function addElementHandler(evt) {
   renderCard(createCard(placeName.value, placeUrl.value));
   closePopup(popupItem);
   popupItemValidation.inactiveButtonState();
-}
-
-export function openPopup(popupType) {
-  popupType.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEsc);
-  popupType.addEventListener('mousedown', closeByOverlay);
 }
 
 function closePopup(popupType) {
