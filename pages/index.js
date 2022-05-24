@@ -1,6 +1,7 @@
 import Card from '../components/Сard.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
+import SubmitForm from '../components/SubmitForm.js';
 import { openPopup, closePopup, popupImg } from '../utils/utils.js';
 import {
   initialCards, buttonEdit, buttonAddCard, buttonClosePopupProfile, buttonClosePopupItem, buttonClosePopupImage,
@@ -40,6 +41,27 @@ cardList.renderItems();
 // initialCards.forEach((element) => {
 //   renderCard(createCard(element.name, element.link));
 // });
+
+const form = new SubmitForm({
+  formSelector: '.popup_item',
+  handleFormSubmit: (formData) => {
+    const card = new Card(formData.place, formData.image, '.element-template');
+    const cardElement = card.createCard();
+
+    cardList.setItem(cardElement);
+  }
+});
+
+const formRenderer = new Section({
+  items: [],
+},
+  cardsContainerSelector
+);
+
+const formElement = form.generateForm();
+
+formRenderer.setItem(formElement);
+
 
 function addElementHandler(evt) {
   evt.preventDefault();
