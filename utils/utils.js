@@ -1,5 +1,4 @@
-const popupImg = document.querySelector('.popup-img');
-const ESC_CODE = 'Escape';
+import { popupImg, ESC_CODE } from './constants.js';
 
 function openPopup(popupType) {
   popupType.classList.add('popup_opened');

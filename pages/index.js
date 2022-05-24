@@ -1,33 +1,12 @@
-import { Card } from './Сard.js';
-import { initialCards } from './elements.js';
-import { FormValidator } from './FormValidator.js';
-import { openPopup, closePopup, popupImg } from './utils.js';
+import { Card } from '../components/Сard.js';
+import { initialCards } from '../utils/constants.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { openPopup, closePopup, popupImg } from '../utils/utils.js';
+import { buttonEdit, buttonAddCard, buttonClosePopupProfile, buttonClosePopupItem, buttonClosePopupImage,
+  popupProfile, popupItem, nameProfile, jopProfile, popupEditForm, popupTextTypeName, popupTextTypeAbout,
+  popupItemForm, placeName, placeUrl, cardsContainer, objectConfig } from '../utils/constants.js';
 
-const buttonEdit = document.querySelector('.profile__edit-btn');
-const buttonAddCard = document.querySelector('.profile__add-btn');
-const buttonClosePopupProfile = document.querySelector('.popup__close-btn_profile');
-const buttonClosePopupItem = document.querySelector('.popup__close-btn_item');
-const buttonClosePopupImage = document.querySelector('.popup-img__close-btn');
-const popupProfile = document.querySelector('.popup_profile');
-const popupItem = document.querySelector('.popup_item');
-const nameProfile = document.querySelector('.profile__name');
-const jopProfile = document.querySelector('.profile__about');
-const popupEditForm = document.forms.editForm;
-const popupTextTypeName = popupEditForm.elements.name;
-const popupTextTypeAbout = popupEditForm.elements.job;
-const popupItemForm = document.forms.itemForm;
-const placeName = popupItemForm.elements.place;
-const placeUrl = popupItemForm.elements.image;
-const cardsContainer = document.querySelector('.elements');
-// const elementTemplate = document.querySelector('.element-template').content;
-const objectConfig = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__text',
-    submitButtonSelector: '.popup__submit-btn',
-    inactiveButtonClass: 'popup__submit-btn_disabled',
-    inputErrorClass: 'popup__text_type_error',
-    errorClass: 'popup__text-error_active'
-  }
+
 
 const popupProfileValidation = new FormValidator(objectConfig, popupProfile);
 popupProfileValidation.enableValidation();
