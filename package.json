@@ -1,0 +1,23 @@
+{
+  "name": "yandex_praktikum",
+  "version": "0.0.1",
+  "description": "Интерактивная страница сайта, куда можно добавлять фотографии, удалять их и ставить лайки.\r Проект доступен по ссылке:\r https://yaanab.github.io/mesto/index.html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yaanab/mesto.git"
+  },
+  "keywords": [
+    "Anastasiya",
+    "Bulycheva"
+  ],
+  "author": "\u0018\u0016Anastasiya Bulycheva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yaanab/mesto/issues"
+  },
+  "homepage": "https://github.com/yaanab/mesto#readme"
+}
