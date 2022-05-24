@@ -2,16 +2,29 @@ import Card from '../components/Сard.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import { openPopup, closePopup, popupImg } from '../utils/utils.js';
-import { initialCards, buttonEdit, buttonAddCard, buttonClosePopupProfile, buttonClosePopupItem, buttonClosePopupImage,
+import {
+  initialCards, buttonEdit, buttonAddCard, buttonClosePopupProfile, buttonClosePopupItem, buttonClosePopupImage,
   popupProfile, popupItem, nameProfile, jopProfile, popupEditForm, popupTextTypeName, popupTextTypeAbout,
-  popupItemForm, placeName, placeUrl, cardsContainer, objectConfig } from '../utils/constants.js';
+  popupItemForm, placeName, placeUrl, cardsContainerSelector, objectConfig
+} from '../utils/constants.js';
 
 const popupProfileValidation = new FormValidator(objectConfig, popupProfile);
 popupProfileValidation.enableValidation();
 const popupItemValidation = new FormValidator(objectConfig, popupItem);
 popupItemValidation.enableValidation();
 
-const cardList = new Section({ items: initialCards }, cardsContainer);
+const cardList = new Section({
+  items: initialCards,
+  renderer: (cardItem) => {
+    const card = new Card(cardItem.name, cardItem.link, '.element-template');
+    const cardElement = card.createCard();
+
+    cardList.setItem(cardElement);
+  }
+},
+  cardsContainerSelector
+);
+
 cardList.renderItems();
 
 // function renderCard(card) {
