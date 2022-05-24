@@ -1,31 +1,32 @@
-import { Card } from '../components/Сard.js';
-import { initialCards } from '../utils/constants.js';
-import { FormValidator } from '../components/FormValidator.js';
+import Card from '../components/Сard.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
 import { openPopup, closePopup, popupImg } from '../utils/utils.js';
-import { buttonEdit, buttonAddCard, buttonClosePopupProfile, buttonClosePopupItem, buttonClosePopupImage,
+import { initialCards, buttonEdit, buttonAddCard, buttonClosePopupProfile, buttonClosePopupItem, buttonClosePopupImage,
   popupProfile, popupItem, nameProfile, jopProfile, popupEditForm, popupTextTypeName, popupTextTypeAbout,
   popupItemForm, placeName, placeUrl, cardsContainer, objectConfig } from '../utils/constants.js';
-
-
 
 const popupProfileValidation = new FormValidator(objectConfig, popupProfile);
 popupProfileValidation.enableValidation();
 const popupItemValidation = new FormValidator(objectConfig, popupItem);
 popupItemValidation.enableValidation();
 
-function renderCard(card) {
-  cardsContainer.prepend(card);
-}
+const cardList = new Section({ items: initialCards }, cardsContainer);
+cardList.renderItems();
 
-function createCard(cardTitle, cardImage) {
-  const card = new Card(cardTitle, cardImage, '.element-template');
-  const cardElement = card.createCard();
-  return cardElement;
-}
+// function renderCard(card) {
+//   cardsContainer.prepend(card);
+// }
 
-initialCards.forEach((element) => {
-  renderCard(createCard(element.name, element.link));
-});
+// function createCard(cardTitle, cardImage) {
+//   const card = new Card(cardTitle, cardImage, '.element-template');
+//   const cardElement = card.createCard();
+//   return cardElement;
+// }
+
+// initialCards.forEach((element) => {
+//   renderCard(createCard(element.name, element.link));
+// });
 
 function addElementHandler(evt) {
   evt.preventDefault();
