@@ -1,4 +1,3 @@
-import Card from './Сard.js'
 export default class Section {
   constructor({ items, renderer }, containerSelector) {
     this._items = items;
@@ -17,7 +16,7 @@ export default class Section {
     });
   }
 
-  setItem(element) {
+  addItem(element) {
     this._container.prepend(element);
   }
 }

@@ -2,11 +2,11 @@ import Card from '../components/Сard.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import SubmitForm from '../components/SubmitForm.js';
-import { openPopup, closePopup, popupImg } from '../utils/utils.js';
+import { openPopup, closePopup } from '../utils/utils.js';
 import {
   initialCards, buttonEdit, buttonAddCard, buttonClosePopupProfile, buttonClosePopupItem, buttonClosePopupImage,
   popupProfile, popupItem, nameProfile, jopProfile, popupEditForm, popupTextTypeName, popupTextTypeAbout,
-  popupItemForm, placeName, placeUrl, cardsContainerSelector, objectConfig
+  popupItemForm, placeName, placeUrl, cardsContainerSelector, objectConfig, popupImg
 } from '../utils/constants.js';
 
 const popupProfileValidation = new FormValidator(objectConfig, popupProfile);
@@ -20,7 +20,7 @@ const cardList = new Section({
     const card = new Card(cardItem.name, cardItem.link, '.element-template');
     const cardElement = card.createCard();
 
-    cardList.setItem(cardElement);
+    cardList.addItem(cardElement);
   }
 },
   cardsContainerSelector
@@ -42,25 +42,25 @@ cardList.renderItems();
 //   renderCard(createCard(element.name, element.link));
 // });
 
-const form = new SubmitForm({
-  formSelector: '.popup_item',
-  handleFormSubmit: (formData) => {
-    const card = new Card(formData.place, formData.image, '.element-template');
-    const cardElement = card.createCard();
+// const form = new SubmitForm({
+//   formSelector: '.popup_item',
+//   handleFormSubmit: (formData) => {
+//     const card = new Card(formData.place, formData.image, '.element-template');
+//     const cardElement = card.createCard();
 
-    cardList.setItem(cardElement);
-  }
-});
+//     cardList.setItem(cardElement);
+//   }
+// });
 
-const formRenderer = new Section({
-  items: [],
-},
-  cardsContainerSelector
-);
+// const formRenderer = new Section({
+//   items: [],
+// },
+//   cardsContainerSelector
+// );
 
-const formElement = form.generateForm();
+// const formElement = form.generateForm();
 
-formRenderer.setItem(formElement);
+// formRenderer.setItem(formElement);
 
 
 function addElementHandler(evt) {

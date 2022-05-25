@@ -1,4 +1,5 @@
-import { openPopup, popupImg } from '../utils/utils.js';
+import { openPopup } from '../utils/utils.js';
+import { popupImg, popupImgPhoto, popupImgTitle } from '../utils/constants.js';
 
 export default class Card {
   constructor(name, link, cardSelector) {
@@ -43,8 +44,6 @@ export default class Card {
   }
 
   _showPopupImage() {
-    const popupImgPhoto = document.querySelector('.popup-img__photo');
-    const popupImgTitle = document.querySelector('.popup-img__title');
     popupImgPhoto.src = this._image;
     popupImgPhoto.alt = this._title;
     popupImgTitle.textContent = this._title;

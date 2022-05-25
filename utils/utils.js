@@ -1,4 +1,4 @@
-import { popupImg, ESC_CODE } from './constants.js';
+import { ESC_CODE } from './constants.js';
 
 function openPopup(popupType) {
   popupType.classList.add('popup_opened');
@@ -25,4 +25,4 @@ function closeByOverlay(evt) {
     closePopup(openedPopup);
   }
 }
-export { openPopup, closePopup, popupImg };
+export { openPopup, closePopup };
