@@ -2,9 +2,10 @@ import { openPopup } from '../utils/utils.js';
 import { popupImg, popupImgPhoto, popupImgTitle } from '../utils/constants.js';
 
 export default class Card {
-  constructor(name, link, cardSelector) {
+  constructor({ name, link, handleCardClick }, cardSelector) {
     this._title = name;
     this._image = link;
+    this._handleCardClick = handleCardClick;
     this._cardSelector = cardSelector;
   }
 
@@ -44,10 +45,7 @@ export default class Card {
   }
 
   _showPopupImage() {
-    popupImgPhoto.src = this._image;
-    popupImgPhoto.alt = this._title;
-    popupImgTitle.textContent = this._title;
-    openPopup(popupImg);
+    this._handleCardClick(this._image, this._title);
   }
 
   _likeElementHandler(evt) {

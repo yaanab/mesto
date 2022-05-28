@@ -2,6 +2,7 @@ import Card from '../components/Сard.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 import { openPopup, closePopup } from '../utils/utils.js';
 import {
   initialCards, buttonEdit, buttonAddCard, buttonClosePopupProfile, buttonClosePopupItem, buttonClosePopupImage,
@@ -17,7 +18,16 @@ popupItemValidation.enableValidation();
 const cardList = new Section({
   items: initialCards,
   renderer: (cardItem) => {
-    const card = new Card(cardItem.name, cardItem.link, '.element-template');
+    const card = new Card({
+      name: cardItem.name,
+      link: cardItem.link,
+      handleCardClick: (image, title) => {
+        const popupImage = new PopupWithImage('.popup-img', image, title);
+        popupImage.open();
+      }
+    },
+      '.element-template'
+    );
     const cardElement = card.createCard();
 
     cardList.addItem(cardElement);
@@ -31,19 +41,26 @@ cardList.renderItems();
 const formItem = new PopupWithForm({
   selectorPopup: '.popup_item',
   submitter: (formData) => {
-    const card = new Card(formData.place, formData.image, '.element-template');
+    const card = new Card({
+      name: formData.place,
+      link: formData.image,
+      handleCardClick: (image, title) => {
+        const popupImage = new PopupWithImage('.popup-img', image, title);
+        popupImage.open();
+      }
+    },
+      '.element-template'
+    );
     const cardElement = card.createCard();
 
     cardList.addItem(cardElement);
-
-    popupItemValidation.inactiveButtonState();
   }
 });
 
 const formRenderer = new Section({
   items: []
 },
-cardsContainerSelector
+  cardsContainerSelector
 );
 
 const formElement = formItem.generateForm();
@@ -91,6 +108,7 @@ function submitProfileForm(evt) {
 // }
 
 buttonAddCard.addEventListener('click', popupItemValidation.resetErrors.bind(popupItemValidation));
+buttonAddCard.addEventListener('click', popupItemValidation.inactiveButtonState.bind(popupItemValidation));
 buttonAddCard.addEventListener('click', formItem.open.bind(formItem));
 
 
