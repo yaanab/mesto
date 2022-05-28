@@ -27,23 +27,13 @@ export const initialCards = [
 
 export const buttonEdit = document.querySelector('.profile__edit-btn');
 export const buttonAddCard = document.querySelector('.profile__add-btn');
-export const buttonClosePopupProfile = document.querySelector('.popup__close-btn_profile');
-export const buttonClosePopupItem = document.querySelector('.popup__close-btn_item');
-export const buttonClosePopupImage = document.querySelector('.popup-img__close-btn');
 export const popupProfile = document.querySelector('.popup_profile');
 export const popupItem = document.querySelector('.popup_item');
 export const nameProfile = document.querySelector('.profile__name');
 export const jopProfile = document.querySelector('.profile__about');
-export const popupEditForm = document.forms.editForm;
-export const popupTextTypeName = popupEditForm.elements.name;
-export const popupTextTypeAbout = popupEditForm.elements.job;
-export const popupItemForm = document.forms.itemForm;
-export const placeName = popupItemForm.elements.place;
-export const placeUrl = popupItemForm.elements.image;
 export const popupImgPhoto = document.querySelector('.popup-img__photo');
 export const popupImgTitle = document.querySelector('.popup-img__title');
 export const cardsContainerSelector = '.elements';
-export const popupImg = document.querySelector('.popup-img');
 export const ESC_CODE = 'Escape';
 export const objectConfig = {
   formSelector: '.popup__form',

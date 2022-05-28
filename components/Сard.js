@@ -1,6 +1,3 @@
-import { openPopup } from '../utils/utils.js';
-import { popupImg, popupImgPhoto, popupImgTitle } from '../utils/constants.js';
-
 export default class Card {
   constructor({ name, link, handleCardClick }, cardSelector) {
     this._title = name;
@@ -36,16 +33,12 @@ export default class Card {
       this._removeElement(evt);
     });
     this._element.querySelector('.element__photo').addEventListener('click', () => {
-      this._showPopupImage();
+      this._handleCardClick(this._image, this._title);
     });
   }
 
   _removeElement(evt) {
     evt.target.closest('.element').remove();
-  }
-
-  _showPopupImage() {
-    this._handleCardClick(this._image, this._title);
   }
 
   _likeElementHandler(evt) {
