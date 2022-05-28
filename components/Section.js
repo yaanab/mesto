@@ -8,11 +8,6 @@ export default class Section {
   renderItems() {
     this._items.forEach(element => {
       this._renderer(element);
-
-      // const card = new Card(element.name, element.link, '.element-template');
-      // const cardElement = card.createCard();
-
-      // this.setItem(cardElement);
     });
   }
 

@@ -1,4 +1,4 @@
-import { buttonClosePopupSelector, ESC_CODE } from '../utils/constants.js';
+import { ESC_CODE } from '../utils/constants.js';
 export default class Popup {
   constructor(selectorPopup) {
     this._popup = document.querySelector(selectorPopup);
@@ -6,8 +6,6 @@ export default class Popup {
 
   open() {
     this._popup.classList.add('popup_opened');
-
-    this.setEventListeners();
   }
 
   close() {
@@ -17,7 +15,7 @@ export default class Popup {
   }
 
   setEventListeners() {
-    this._popup.querySelector(buttonClosePopupSelector).addEventListener('click', () => {
+    this._popup.querySelector('.popup__close-btn').addEventListener('click', () => {
       this.close();
     });
     document.addEventListener('keydown', (evt) => {
