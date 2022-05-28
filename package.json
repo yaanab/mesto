@@ -4,7 +4,7 @@
   "description": "Интерактивная страница сайта, куда можно добавлять фотографии, удалять их и ставить лайки.\r Проект доступен по ссылке:\r https://yaanab.github.io/mesto/index.html",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/yaanab/mesto/issues"
   },
-  "homepage": "https://github.com/yaanab/mesto#readme"
+  "homepage": "https://github.com/yaanab/mesto#readme",
+  "devDependencies": {
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
+  }
 }
