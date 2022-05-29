@@ -13,4 +13,4 @@ https://yaanab.github.io/mesto/index.html
 ### Планы по доработке:
 :black_square_button: Реализовать возможность изменения аватара<br>
 ___
-![](./images/krasnoyarskiy-krai.jpg)
+![](./src/images/krasnoyarskiy-krai.jpg)
