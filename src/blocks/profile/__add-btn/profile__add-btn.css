@@ -3,7 +3,7 @@
   border: 2px solid #FFFFFF;
   border-radius: 2px;
   background-color: #000000;
-  background: url(../../../images/Add\ button.svg) center no-repeat;
+  background: url(../../../images/Add-button.svg) center no-repeat;
   transition: 0.2s;
   cursor: pointer;
 }

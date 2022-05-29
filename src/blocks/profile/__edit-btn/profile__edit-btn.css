@@ -1,6 +1,6 @@
 .profile__edit-btn {
   grid-area: button;
-  background-image: url(../../../images/Edit\ btn.svg);
+  background-image: url(../../../images/Edit-btn.svg);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
