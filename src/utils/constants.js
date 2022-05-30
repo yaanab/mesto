@@ -29,8 +29,7 @@ export const buttonEdit = document.querySelector('.profile__edit-btn');
 export const buttonAddCard = document.querySelector('.profile__add-btn');
 export const popupProfile = document.querySelector('.popup_profile');
 export const popupItem = document.querySelector('.popup_item');
-export const nameProfile = document.querySelector('.profile__name');
-export const jopProfile = document.querySelector('.profile__about');
+
 export const cardsContainerSelector = '.elements';
 export const ESC_CODE = 'Escape';
 export const objectConfig = {
