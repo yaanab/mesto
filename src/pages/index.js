@@ -15,50 +15,38 @@ popupProfileValidation.enableValidation();
 const popupItemValidation = new FormValidator(objectConfig, popupItem);
 popupItemValidation.enableValidation();
 
+function createCard(name, link) {
+  const card = new Card({
+    name,
+    link
+},
+    (image, title) => {
+      popupImage.open(image, title);
+    },
+    '.element-template'
+  );
+  const cardElement = card.createCard();
+  cardList.addItem(cardElement);
+}
+
 const popupImage = new PopupWithImage('.popup-img');
 popupImage.setEventListeners();
 
 const cardList = new Section({
   items: initialCards,
-  renderer: (cardItem) => {
-    const card = new Card({
-      name: cardItem.name,
-      link: cardItem.link
-  },
-      (image, title) => {
-        popupImage.open(image, title);
-      },
-      '.element-template'
-    );
-    const cardElement = card.createCard();
-
-    cardList.addItem(cardElement);
-  }
+  renderer: (cardItem) => createCard(cardItem.name, cardItem.link)
 },
   cardsContainerSelector
 );
 
 const formItem = new PopupWithForm({
   selectorPopup: '.popup_item',
-  submitter: (formData) => {
-    const card = new Card({
-      name: formData.place,
-      link: formData.image
-    },
-      (image, title) => {
-        popupImage.open(image, title);
-      },
-      '.element-template'
-    );
-    const cardElement = card.createCard();
-
-    cardList.addItem(cardElement);
-  }
+  submitter: (formData) => createCard(formData.place, formData.image),
 });
 
-cardList.renderItems();
-
 formItem.setEventListeners();
+
+cardList.renderItems();
 
 const userInfo = new UserInfo('.profile__name', '.profile__about');
 
