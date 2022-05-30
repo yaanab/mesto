@@ -16,17 +16,19 @@ popupProfileValidation.enableValidation();
 const popupItemValidation = new FormValidator(objectConfig, popupItem);
 popupItemValidation.enableValidation();
 
+const popupImage = new PopupWithImage('.popup-img');
+popupImage.setEventListeners();
+
 const cardList = new Section({
   items: initialCards,
   renderer: (cardItem) => {
     const card = new Card({
       name: cardItem.name,
-      link: cardItem.link,
-      handleCardClick: (image, title) => {
-        const popupImage = new PopupWithImage('.popup-img', image, title);
-        popupImage.open();
-      }
-    },
+      link: cardItem.link
+  },
+      (image, title) => {
+        popupImage.open(image, title);
+      },
       '.element-template'
     );
     const cardElement = card.createCard();
@@ -44,12 +46,11 @@ const formItem = new PopupWithForm({
   submitter: (formData) => {
     const card = new Card({
       name: formData.place,
-      link: formData.image,
-      handleCardClick: (image, title) => {
-        const popupImage = new PopupWithImage('.popup-img', image, title);
-        popupImage.open();
-      }
+      link: formData.image
     },
+      (image, title) => {
+        popupImage.open(image, title);
+      },
       '.element-template'
     );
     const cardElement = card.createCard();
