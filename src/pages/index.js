@@ -60,11 +60,12 @@ cardList.renderItems();
 
 formItem.setEventListeners();
 
+const userInfo = new UserInfo('.profile__name', '.profile__about');
+
 const formProfile = new PopupWithForm({
   selectorPopup: '.popup_profile',
   submitter: (formData) => {
-    const userInfo = new UserInfo('.profile__name', '.profile__about');
-    userInfo.setUserInfo({
+      userInfo.setUserInfo({
       name: formData.name,
       job: formData.job
     });
@@ -81,10 +82,8 @@ buttonAddCard.addEventListener('click', () => {
 
 buttonEdit.addEventListener('click', () => {
   popupProfileValidation.resetErrors();
-  popupItemValidation.inactiveButtonState();
+  popupProfileValidation.inactiveButtonState();
 
-
-  const userInfo = new UserInfo('.profile__name', '.profile__about');
   const profileInfo = userInfo.getUserInfo();
   formProfile.popupValues(profileInfo);
 
