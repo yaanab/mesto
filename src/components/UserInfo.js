@@ -1,21 +1,19 @@
-import {  nameProfile, jopProfile } from '../utils/constants.js';
-
 export default class UserInfo {
-  constructor (userName, userInfo) {
-    this._userName = userName;
-    this._userInfo = userInfo;
+  constructor (nameProfile, jobProfile) {
+    this._userName = document.querySelector(nameProfile);
+    this._userInfo = document.querySelector(jobProfile);
   }
 
   getUserInfo() {
     const userProfile = {};
-    userProfile.name = this._userName;
-    userProfile.job = this._userInfo;
+    userProfile.name = this._userName.textContent;
+    userProfile.job = this._userInfo.textContent;
 
     return userProfile;
   }
 
-  setUserInfo() {
-    nameProfile.textContent = this._userName;
-    jopProfile.textContent = this._userInfo;
+  setUserInfo({ name, job }) {
+    this._userName.textContent = name;
+    this._userInfo.textContent = job;
   }
 }

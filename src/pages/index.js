@@ -74,8 +74,11 @@ formRenderer.renderItems(formElement);
 const formProfile = new PopupWithForm({
   selectorPopup: '.popup_profile',
   submitter: (formData) => {
-    const userInfo = new UserInfo(formData.name, formData.job);
-    userInfo.setUserInfo();
+    const userInfo = new UserInfo('.profile__name', '.profile__about');
+    userInfo.setUserInfo({
+      name: formData.name,
+      job: formData.job
+    });
   }
 });
 
@@ -93,7 +96,8 @@ buttonEdit.addEventListener('click', () => {
   popupProfileValidation.resetErrors();
   popupItemValidation.inactiveButtonState();
 
-  const userInfo = new UserInfo(nameProfile.textContent, jopProfile.textContent);
+
+  const userInfo = new UserInfo('.profile__name', '.profile__about');
   const profileInfo = userInfo.getUserInfo();
   formProfile.popupValues(profileInfo);
 
