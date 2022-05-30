@@ -7,8 +7,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 
 import {
-  initialCards, buttonEdit, buttonAddCard, popupProfile, popupItem, nameProfile,
-  jopProfile, cardsContainerSelector, objectConfig
+  initialCards, buttonEdit, buttonAddCard, popupProfile, popupItem, cardsContainerSelector, objectConfig
 } from '../utils/constants.js';
 
 const popupProfileValidation = new FormValidator(objectConfig, popupProfile);
@@ -39,8 +38,6 @@ const cardList = new Section({
   cardsContainerSelector
 );
 
-cardList.renderItems();
-
 const formItem = new PopupWithForm({
   selectorPopup: '.popup_item',
   submitter: (formData) => {
@@ -59,17 +56,9 @@ const formItem = new PopupWithForm({
   }
 });
 
-const formRenderer = new Section({
-  items: []
-},
-  cardsContainerSelector
-);
+cardList.renderItems();
 
-// const formElement = formItem.generateForm(); genetate убрала из PopupwithForm
-
-const formElement = formItem.setEventListeners();
-
-formRenderer.renderItems(formElement);
+formItem.setEventListeners();
 
 const formProfile = new PopupWithForm({
   selectorPopup: '.popup_profile',
@@ -81,8 +70,6 @@ const formProfile = new PopupWithForm({
     });
   }
 });
-
-// formProfile.generateForm(); genetate убрала из PopupwithForm
 
 formProfile.setEventListeners();
 
