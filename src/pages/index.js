@@ -64,7 +64,9 @@ const formRenderer = new Section({
   cardsContainerSelector
 );
 
-const formElement = formItem.generateForm();
+// const formElement = formItem.generateForm(); genetate убрала из PopupwithForm
+
+const formElement = formItem.setEventListeners();
 
 formRenderer.renderItems(formElement);
 
@@ -76,7 +78,9 @@ const formProfile = new PopupWithForm({
   }
 });
 
-formProfile.generateForm();
+// formProfile.generateForm(); genetate убрала из PopupwithForm
+
+formProfile.setEventListeners();
 
 buttonAddCard.addEventListener('click', () => {
   popupItemValidation.resetErrors();
