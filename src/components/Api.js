@@ -8,8 +8,8 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-    .then(res => this._testResponse(res))
-    .catch(err => this._logError(err));
+      .then(res => this._testResponse(res))
+      .catch(err => this._logError(err));
   }
 
   getUserInfo() {
@@ -18,6 +18,18 @@ export default class Api {
     })
       .then(res => this._testResponse(res))
       .catch(err => this._logError(err));
+  }
+
+  editProfile(name, about) {
+    fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        about
+      })
+    })
+    .catch(err => this._logError(err));
   }
 
   _testResponse(res) {

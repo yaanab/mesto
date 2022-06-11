@@ -11,11 +11,6 @@ import {
   initialCards, buttonEdit, buttonAddCard, popupProfile, popupItem, cardsContainerSelector, objectConfig
 } from '../utils/constants.js';
 
-const popupProfileValidation = new FormValidator(objectConfig, popupProfile);
-popupProfileValidation.enableValidation();
-const popupItemValidation = new FormValidator(objectConfig, popupItem);
-popupItemValidation.enableValidation();
-
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-43',
   headers: {
@@ -23,6 +18,22 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 });
+
+api.getUserInfo()
+  .then(user => userInfo.setUserInfo({
+      name: user.name,
+      job: user.about
+    }));
+
+api.getInitialCards()
+  .then(cards => cardList.renderItems(cards));
+
+const popupProfileValidation = new FormValidator(objectConfig, popupProfile);
+popupProfileValidation.enableValidation();
+const popupItemValidation = new FormValidator(objectConfig, popupItem);
+popupItemValidation.enableValidation();
+
+
 
 function createCard(name, link) {
   const card = new Card({
@@ -54,10 +65,7 @@ const formItem = new PopupWithForm({
 
 formItem.setEventListeners();
 
-
 const userInfo = new UserInfo('.profile__name', '.profile__about');
-
-
 
 const formProfile = new PopupWithForm({
   selectorPopup: '.popup_profile',
@@ -66,19 +74,13 @@ const formProfile = new PopupWithForm({
       name: formData.name,
       job: formData.job
     });
+      api.editProfile(formData.name, formData.job);
   }
 });
 
 formProfile.setEventListeners();
 
-api.getUserInfo()
-  .then(user => userInfo.setUserInfo({
-      name: user.name,
-      job: user.about
-    }));
 
-api.getInitialCards()
-  .then(cards => cardList.renderItems(cards));
 
 buttonAddCard.addEventListener('click', () => {
   popupItemValidation.resetErrors();
