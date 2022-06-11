@@ -60,7 +60,10 @@ const cardList = new Section({
 
 const formItem = new PopupWithForm({
   selectorPopup: '.popup_item',
-  submitter: (formData) => createCard(formData.place, formData.image),
+  submitter: (formData) => {
+    createCard(formData.place, formData.image);
+    api.addCard(formData.place, formData.image)
+  }
 });
 
 formItem.setEventListeners();

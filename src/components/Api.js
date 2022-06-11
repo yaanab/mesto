@@ -29,6 +29,20 @@ export default class Api {
         about
       })
     })
+    .then(res => this._testResponse(res))
+    .catch(err => this._logError(err));
+  }
+
+  addCard(name, link) {
+    fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name,
+        link
+      })
+    })
+    .then(res => this._testResponse(res))
     .catch(err => this._logError(err));
   }
 
