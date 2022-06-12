@@ -30,6 +30,17 @@ export default class Api {
       .then(res => this._testResponse(res));
   }
 
+  editAvatar(avatar) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar
+      })
+    })
+      .then(res => this._testResponse(res));
+  }
+
   addCard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',

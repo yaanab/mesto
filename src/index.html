@@ -61,7 +61,7 @@
           <span class="job-input-error popup__text-error"></span>
           <button type="submit" class="popup__submit-btn">Сохранить</button>
         </form>
-        <button aria-label="Закрыть" type="button" class="popup__close-btn popup__close-btn_profile"></button>
+        <button aria-label="Закрыть" type="button" class="popup__close-btn"></button>
       </div>
     </div>
 
@@ -77,7 +77,7 @@
           <span class="image-src-input-error popup__text-error"></span>
           <button type="submit" class="popup__submit-btn popup__submit-btn_item">Создать</button>
         </form>
-        <button aria-label="Закрыть" type="button" class="popup__close-btn popup__close-btn_item"></button>
+        <button aria-label="Закрыть" type="button" class="popup__close-btn"></button>
       </div>
     </div>
 
@@ -87,7 +87,7 @@
         <h2 class="popup-img__title">
 
         </h2>
-        <button aria-label="Закрыть фото" type="button" class="popup__close-btn popup-img__close-btn"></button>
+        <button aria-label="Закрыть фото" type="button" class="popup__close-btn"></button>
       </div>
     </div>
 
@@ -96,6 +96,19 @@
         <h2 class="popup__title-confirm">Вы уверены?</h2>
         <form name="deleteForm" class="popup__form popup__form_confirm">
           <button type="button" class="popup__submit-btn popup__submit-btn_del-card">Да</button>
+        </form>
+        <button aria-label="Закрыть" type="button" class="popup__close-btn"></button>
+      </div>
+    </div>
+
+    <div class="popup popup_avatar">
+      <div class="popup__container">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form name="avatarForm" class="popup__form popup__form_avatar" novalidate>
+          <input id="avatar-src-input" type="url" name="avatar" placeholder="Ccылка на аватар"
+            class="popup__text popup__text_avatar_url" required>
+          <span class="avatar-src-input-error popup__text-error"></span>
+          <button type="submit" class="popup__submit-btn popup__submit-btn_avatar">Сохранить</button>
         </form>
         <button aria-label="Закрыть" type="button" class="popup__close-btn"></button>
       </div>
