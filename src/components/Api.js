@@ -8,16 +8,14 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-      .then(res => this._testResponse(res))
-      .catch(err => this._logError(err));
+      .then(res => this._testResponse(res));
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-      .then(res => this._testResponse(res))
-      .catch(err => this._logError(err));
+      .then(res => this._testResponse(res));
   }
 
   editProfile(name, about) {
@@ -29,8 +27,7 @@ export default class Api {
         about
       })
     })
-      .then(res => this._testResponse(res))
-      .catch(err => this._logError(err));
+      .then(res => this._testResponse(res));
   }
 
   addCard(name, link) {
@@ -42,8 +39,7 @@ export default class Api {
         link
       })
     })
-      .then(res => this._testResponse(res))
-      .catch(err => this._logError(err));
+      .then(res => this._testResponse(res));
   }
 
   addLike(cardId) {
@@ -51,8 +47,7 @@ export default class Api {
       method: 'PUT',
       headers: this._headers
     })
-      .then(res => this._testResponse(res))
-      .catch(err => this._logError(err));
+      .then(res => this._testResponse(res));
   }
 
   removeLike(cardId) {
@@ -60,8 +55,15 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(res => this._testResponse(res))
-      .catch(err => this._logError(err));
+      .then(res => this._testResponse(res));
+  }
+
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then(res => this._testResponse(res));
   }
 
   _testResponse(res) {
@@ -69,10 +71,6 @@ export default class Api {
       return res.json();
     }
     return Promise.reject(`Ошибка: ${res.status}`);
-  }
-
-  _logError(err) {
-    console.log(err);
   }
 }
 

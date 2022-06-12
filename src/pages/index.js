@@ -4,6 +4,7 @@ import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithConfirmation from '../components/PopupWithComfirmation.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 
@@ -28,28 +29,23 @@ api.getUserInfo()
       job: user.about
     });
     userId = user._id;
+  })
+  .catch((err) => {
+    console.log(err);
   });
 
 api.getInitialCards()
-  .then(cards => cardList.renderItems(cards));
+  .then(cards => cardList.renderItems(cards))
+  .catch((err) => {
+    console.log(err);
+  });
 
 const popupProfileValidation = new FormValidator(objectConfig, popupProfile);
 popupProfileValidation.enableValidation();
 const popupItemValidation = new FormValidator(objectConfig, popupItem);
 popupItemValidation.enableValidation();
 
-function createCard(data) {
-  const card = new Card(
-    data,
-    (image, title) => popupImage.open(image, title),
-    () => api.removeLike(data._id),
-    () => api.addLike(data._id),
-    '.element-template',
-    userId
-  );
-  const cardElement = card.createCard();
-  cardList.addItem(cardElement);
-}
+
 
 const popupImage = new PopupWithImage('.popup-img');
 popupImage.setEventListeners();
@@ -89,6 +85,45 @@ const formProfile = new PopupWithForm({
 
 formProfile.setEventListeners();
 
+const popupRemoveCard = new PopupWithConfirmation('.popup_confirmation');
+popupRemoveCard.setEventListeners();
+
+function createCard(data) {
+  const card = new Card(
+    data,
+    (image, title) => popupImage.open(image, title),
+    () => {
+      api.removeLike(data._id)
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    () => {
+      api.addLike(data._id)
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    () => {
+      popupRemoveCard.open();
+      popupRemoveCard.getConfirm(() => {
+        api.deleteCard(data._id)
+          .then(() => {
+            card.removeElement();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+
+      });
+    },
+    '.element-template',
+    userId
+  );
+  const cardElement = card.createCard();
+  cardList.addItem(cardElement);
+}
 
 
 buttonAddCard.addEventListener('click', () => {
