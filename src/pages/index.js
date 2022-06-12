@@ -30,15 +30,11 @@ api.getUserInfo()
     });
     userId = user._id;
   })
-  .catch((err) => {
-    console.log(err);
-  });
+  .catch((err) => console.log(err));
 
 api.getInitialCards()
   .then(cards => cardList.renderItems(cards))
-  .catch((err) => {
-    console.log(err);
-  });
+  .catch((err) => console.log(err));
 
 const popupProfileValidation = new FormValidator(objectConfig, popupProfile);
 popupProfileValidation.enableValidation();
@@ -62,7 +58,8 @@ const formItem = new PopupWithForm({
   selectorPopup: '.popup_item',
   submitter: (formData) => {
     api.addCard(formData.place, formData.image)
-      .then(card => createCard(card));
+      .then(card => createCard(card))
+      .catch((err) => console.log(err));
   }
 });
 
@@ -79,7 +76,8 @@ const formProfile = new PopupWithForm({
           name: data.name,
           job: data.about
         });
-      });
+      })
+      .catch((err) => console.log(err));
   }
 });
 
@@ -94,15 +92,8 @@ function createCard(data) {
     (image, title) => popupImage.open(image, title),
     () => {
       api.removeLike(data._id)
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    () => {
-      api.addLike(data._id)
-        .catch((err) => {
-          console.log(err);
-        });
+        .then
+        .catch((err) => console.log(err));
     },
     () => {
       popupRemoveCard.open();
@@ -111,11 +102,7 @@ function createCard(data) {
           .then(() => {
             card.removeElement();
           })
-          .catch((err) => {
-            console.log(err);
-          });
-
-
+          .catch((err) => console.log(err));
       });
     },
     '.element-template',

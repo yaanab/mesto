@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(data, handleCardClick, deleteLike, addLike, deleteCard, cardSelector, userId) {
+  constructor(data, handleCardClick, handleLikeClick, deleteCard, cardSelector, userId) {
     this._title = data.name;
     this._image = data.link;
     this._likes = data.likes.length;
@@ -7,8 +7,7 @@ export default class Card {
     this._ownerId = data.owner._id;
 
     this._handleCardClick = handleCardClick;
-    this._deleteLike = deleteLike;
-    this._addLike = addLike;
+    this._handleLikeClick = handleLikeClick;
     this._deleteCard = deleteCard;
 
     this._cardSelector = cardSelector;
@@ -36,18 +35,14 @@ export default class Card {
       this._remove.classList.add('element__remove_hidden');
     }
 
-    this._setEventListeners();
+    this._setEventListeners();;
 
     return this._element;
   }
 
   _setEventListeners() {
-    this._element.querySelector('.element__like').addEventListener('click', (evt) => {
-      this._likeElementHandler(evt)
-    });
-    this._remove.addEventListener('click', () => {
-      this._deleteCard(this._id);
-    });
+    this._element.querySelector('.element__like').addEventListener('click', () => this._handleLikeClick());
+    this._remove.addEventListener('click', () => this._deleteCard(this._id));
     this._photo.addEventListener('click', () => this._handleCardClick(this._image, this._title));
   }
 
