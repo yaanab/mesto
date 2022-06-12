@@ -21,7 +21,7 @@ export default class Api {
   }
 
   editProfile(name, about) {
-    fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
@@ -29,12 +29,12 @@ export default class Api {
         about
       })
     })
-    .then(res => this._testResponse(res))
-    .catch(err => this._logError(err));
+      .then(res => this._testResponse(res))
+      .catch(err => this._logError(err));
   }
 
   addCard(name, link) {
-    fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
@@ -42,8 +42,26 @@ export default class Api {
         link
       })
     })
-    .then(res => this._testResponse(res))
-    .catch(err => this._logError(err));
+      .then(res => this._testResponse(res))
+      .catch(err => this._logError(err));
+  }
+
+  addLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: 'PUT',
+      headers: this._headers
+    })
+      .then(res => this._testResponse(res))
+      .catch(err => this._logError(err));
+  }
+
+  removeLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+      .then(res => this._testResponse(res))
+      .catch(err => this._logError(err));
   }
 
   _testResponse(res) {
@@ -56,7 +74,6 @@ export default class Api {
   _logError(err) {
     console.log(err);
   }
-
 }
 
 

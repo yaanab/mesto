@@ -19,11 +19,16 @@ const api = new Api({
   }
 });
 
+let userId;
+
 api.getUserInfo()
-  .then(user => userInfo.setUserInfo({
+  .then((user) => {
+    userInfo.setUserInfo({
       name: user.name,
       job: user.about
-    }));
+    });
+    userId = user._id;
+  });
 
 api.getInitialCards()
   .then(cards => cardList.renderItems(cards));
@@ -33,17 +38,14 @@ popupProfileValidation.enableValidation();
 const popupItemValidation = new FormValidator(objectConfig, popupItem);
 popupItemValidation.enableValidation();
 
-
-
-function createCard(name, link) {
-  const card = new Card({
-    name,
-    link
-},
-    (image, title) => {
-      popupImage.open(image, title);
-    },
-    '.element-template'
+function createCard(data) {
+  const card = new Card(
+    data,
+    (image, title) => popupImage.open(image, title),
+    () => api.removeLike(data._id),
+    () => api.addLike(data._id),
+    '.element-template',
+    userId
   );
   const cardElement = card.createCard();
   cardList.addItem(cardElement);
@@ -53,7 +55,9 @@ const popupImage = new PopupWithImage('.popup-img');
 popupImage.setEventListeners();
 
 const cardList = new Section({
-  renderer: (cardItem) => createCard(cardItem.name, cardItem.link)
+  renderer: (cardItem) => {
+    createCard(cardItem);
+  }
 },
   cardsContainerSelector
 );
@@ -61,8 +65,8 @@ const cardList = new Section({
 const formItem = new PopupWithForm({
   selectorPopup: '.popup_item',
   submitter: (formData) => {
-    createCard(formData.place, formData.image);
     api.addCard(formData.place, formData.image)
+      .then(card => createCard(card));
   }
 });
 
@@ -73,11 +77,13 @@ const userInfo = new UserInfo('.profile__name', '.profile__about');
 const formProfile = new PopupWithForm({
   selectorPopup: '.popup_profile',
   submitter: (formData) => {
-      userInfo.setUserInfo({
-      name: formData.name,
-      job: formData.job
-    });
-      api.editProfile(formData.name, formData.job);
+    api.editProfile(formData.name, formData.job)
+      .then((data) => {
+        userInfo.setUserInfo({
+          name: data.name,
+          job: data.about
+        });
+      });
   }
 });
 
