@@ -17,23 +17,15 @@ export default class Popup {
   }
 
   setEventListeners() {
-    this._popup.querySelector('.popup__close-btn').addEventListener('click', () => {
-      this.close();
-    });
-
-    this._popup.addEventListener('mousedown', (evt) => {
-      this._closeByOverlay(evt);
-    });
+    this._popup.addEventListener('click', (evt) => {
+      if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-btn')) {
+        this.close();
+      }
+    })
   }
 
   _handleEscClose = (evt) => {
     if (evt.key === ESC_CODE) {
-      this.close();
-    }
-  }
-
-  _closeByOverlay(evt) {
-    if (evt.target.classList.contains('popup')) {
       this.close();
     }
   }
