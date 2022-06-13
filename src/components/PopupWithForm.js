@@ -30,8 +30,8 @@ export default class PopupWithForm extends Popup {
     this._element.reset();
   }
 
-  popupValues(object) {
-    this._inputList.forEach(input => input.value = object[input.name]);
+  popupValues(inputValuesInitial) {
+    this._inputList.forEach(input => input.value = inputValuesInitial[input.name]);
   }
 
   changeButtonText(text) {
