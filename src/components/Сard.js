@@ -17,8 +17,8 @@ export default class Card {
   _getTemplate() {
     const elementTemplate = document.querySelector(this._cardSelector).content;
     const element = elementTemplate.querySelector('.element');
-    const cardNew = element.cloneNode(true);
-    this._element = cardNew;
+    this._element = element.cloneNode(true);
+    return this._element;
   }
 
   createCard() {
@@ -57,7 +57,7 @@ export default class Card {
   }
 
   isLiked() {
-    const userLike = this._likes.find((item) => item._id === this._userId);
+    const userLike = this._likes.find((user) => user._id === this._userId);
     return Boolean(userLike);
   }
 

@@ -35,4 +35,9 @@ export default class PopupWithForm extends Popup {
   popupValues(object) {
     this._inputList.forEach(input => input.value = object[input.name]);
   }
+
+  changeButtonText(text) {
+    this._button = this._element.querySelector('.popup__submit-btn');
+    this._button.textContent = text;
+  }
 }

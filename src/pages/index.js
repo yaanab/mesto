@@ -47,20 +47,15 @@ popupAvatarValidation.enableValidation();
 const popupImage = new PopupWithImage('.popup-img');
 popupImage.setEventListeners();
 
-const cardList = new Section({
-  renderer: (cardItem) => {
-    createCard(cardItem);
-  }
-},
-  cardsContainerSelector
-);
-
 const formItem = new PopupWithForm({
   selectorPopup: '.popup_item',
   submitter: (formData) => {
-    api.addCard(formData.place, formData.image)
+    formItem.changeButtonText('Cохранение...');
+    api
+      .addCard(formData.place, formData.image)
       .then(card => createCard(card))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => formItem.changeButtonText('Cоplfnm'));
   }
 });
 
@@ -71,14 +66,17 @@ const userInfo = new UserInfo('.profile__name', '.profile__about', '.profile__av
 const formProfile = new PopupWithForm({
   selectorPopup: '.popup_profile',
   submitter: (formData) => {
-    api.editProfile(formData.name, formData.job)
+    formItem.changeButtonText('Cохранение...');
+    api
+      .editProfile(formData.name, formData.job)
       .then((data) => {
         userInfo.setUserInfo({
           name: data.name,
           job: data.about
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => formItem.changeButtonText('Cохранить'));
   }
 });
 
@@ -87,13 +85,16 @@ formProfile.setEventListeners();
 const formAvatar = new PopupWithForm({
   selectorPopup: '.popup_avatar',
   submitter: (formData) => {
-    api.editAvatar(formData.avatar)
+    formItem.changeButtonText('Cохранение...');
+    api
+      .editAvatar(formData.avatar)
       .then((data) => {
         userInfo.setAvatar({
           avatar: data.avatar
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => formItem.changeButtonText('Cохранить'));
   }
 })
 
@@ -102,33 +103,40 @@ formAvatar.setEventListeners();
 const popupRemoveCard = new PopupWithConfirmation('.popup_confirmation');
 popupRemoveCard.setEventListeners();
 
+const cardList = new Section({
+  renderer: (cardItem) => {
+    createCard(cardItem);
+  }
+},
+  cardsContainerSelector
+);
+
 function createCard(data) {
   const card = new Card(
     data,
     (image, title) => popupImage.open(image, title),
     () => {
       if (card.isLiked()) {
-        api.removeLike(data._id)
-          .then((data) => {
-            card.updateLikes(data)
-          })
+        api
+          .removeLike(data._id)
+          .then((data) => card.updateLikes(data))
           .catch((err) => console.log(err));
       } else {
-        api.addLike(data._id)
-          .then((data) => {
-            card.updateLikes(data)
-          })
+        api
+          .addLike(data._id)
+          .then((data) => card.updateLikes(data))
           .catch((err) => console.log(err));
       }
     },
     () => {
       popupRemoveCard.open();
       popupRemoveCard.getConfirm(() => {
-        api.deleteCard(data._id)
-          .then(() => {
-            card.removeElement();
-          })
-          .catch((err) => console.log(err));
+        popupRemoveCard.changeButtonText('Удаление...');
+        api
+          .deleteCard(data._id)
+          .then(() => card.removeElement())
+          .catch((err) => console.log(err))
+          .finally(() => popupRemoveCard.changeButtonText('Да'));
       });
     },
     '.element-template',
@@ -137,7 +145,6 @@ function createCard(data) {
   const cardElement = card.createCard();
   cardList.addItem(cardElement);
 }
-
 
 buttonAddCard.addEventListener('click', () => {
   popupItemValidation.resetErrors();
