@@ -54,8 +54,9 @@ const formItem = new PopupWithForm({
     api
       .addCard(formData.place, formData.image)
       .then(card => createCard(card))
+      .then(() => formItem.close())
       .catch((err) => console.log(err))
-      .finally(() => formItem.changeButtonText('Cоplfnm'));
+      .finally(() => formItem.changeButtonText('Создать'));
   }
 });
 
@@ -75,8 +76,9 @@ const formProfile = new PopupWithForm({
           job: data.about
         });
       })
+      .then(() => formProfile.close())
       .catch((err) => console.log(err))
-      .finally(() => formItem.changeButtonText('Cохранить'));
+      .finally(() => formProfile.changeButtonText('Cохранить'));
   }
 });
 
@@ -93,8 +95,9 @@ const formAvatar = new PopupWithForm({
           avatar: data.avatar
         });
       })
+      .then(() => formAvatar.close())
       .catch((err) => console.log(err))
-      .finally(() => formItem.changeButtonText('Cохранить'));
+      .finally(() => formAvatar.changeButtonText('Cохранить'));
   }
 })
 
@@ -135,6 +138,7 @@ function createCard(data) {
         api
           .deleteCard(data._id)
           .then(() => card.removeElement())
+          .then(() => popupRemoveCard.close())
           .catch((err) => console.log(err))
           .finally(() => popupRemoveCard.changeButtonText('Да'));
       });
