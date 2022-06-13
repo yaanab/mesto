@@ -22,11 +22,9 @@ const api = new Api({
 
 let userId;
 
-const userInitial = api.getUserInfo();
-const cardsInitial = api.getInitialCards();
-
-Promise.all([userInitial, cardsInitial])
+Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([user, cards]) => {
+    userId = user._id;
     userInfo.setUserInfo({
       name: user.name,
       job: user.about
@@ -35,9 +33,9 @@ Promise.all([userInitial, cardsInitial])
       avatar: user.avatar
     });
     cardList.renderItems(cards);
-    userId = user._id;
   })
   .catch((err) => console.log(err));
+
 
 const popupProfileValidation = new FormValidator(objectConfig, popupProfile);
 popupProfileValidation.enableValidation();
@@ -109,9 +107,19 @@ function createCard(data) {
     data,
     (image, title) => popupImage.open(image, title),
     () => {
-      api.removeLike(data._id)
-        .then
-        .catch((err) => console.log(err));
+      if (card.isLiked()) {
+        api.removeLike(data._id)
+          .then((data) => {
+            card.updateLikes(data)
+          })
+          .catch((err) => console.log(err));
+      } else {
+        api.addLike(data._id)
+          .then((data) => {
+            card.updateLikes(data)
+          })
+          .catch((err) => console.log(err));
+      }
     },
     () => {
       popupRemoveCard.open();
